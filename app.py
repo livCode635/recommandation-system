@@ -201,3 +201,4 @@ with st.expander("Voir un aperçu des matrices"):
 
     st.write("Matrice de similarité item-item")
     st.dataframe(item_similarity_df.iloc[:10, :10], use_container_width=True)
+    
