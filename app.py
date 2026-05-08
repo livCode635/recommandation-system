@@ -10,9 +10,7 @@ st.set_page_config(
 st.title("Système de recommandation de films")
 st.write("Collaborative Filtering item-item avec le dataset MovieLens.")
 
-# =========================
 # Chargement des données
-# =========================
 
 @st.cache_data
 def load_data():
@@ -52,9 +50,7 @@ number_of_movies_to_rate = st.sidebar.slider(
     value=12
 )
 
-# =========================
 # Films à noter
-# =========================
 
 st.subheader("Veuillez noter quelques films")
 
@@ -87,9 +83,7 @@ for index, row in enumerate(movies_to_rate.itertuples()):
         if rating > 0:
             user_ratings[row.movieId] = rating
 
-# =========================
 # Préparation de la matrice
-# =========================
 
 @st.cache_data
 def build_similarity_matrix(df):
@@ -114,9 +108,7 @@ def build_similarity_matrix(df):
 
 user_item_matrix, item_similarity_df = build_similarity_matrix(df)
 
-# =========================
 # Fonction de recommandation
-# =========================
 
 def recommend_movies(user_ratings, top_n=5):
     recommendations = {}
@@ -151,9 +143,7 @@ def recommend_movies(user_ratings, top_n=5):
 
     return recommendations[:top_n]
 
-# =========================
 # Recommandation
-# =========================
 
 st.divider()
 
@@ -200,9 +190,7 @@ if st.button("Générer mes recommandations", type="primary"):
         else:
             st.error("Aucune recommandation trouvée.")
 
-# =========================
 # Debug léger
-# =========================
 
 with st.expander("Voir un aperçu des matrices"):
     st.write("Données MovieLens")
